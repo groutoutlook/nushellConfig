@@ -1,0 +1,15 @@
+clear
+:Q
+exit
+clear
+:q
+ecit
+exit
+ls
+clear
+exit
+git st
+clear
+exit
+plugin list
+exit
