@@ -13,3 +13,26 @@ clear
 exit
 plugin list
 exit
+config nu --default
+config nu --default | nvim
+exit
+clear
+exit
+plplugin list
+plugin list
+exit
+ls
+clear
+exit
+scoop list | uniq
+scoop list | sort NAme
+scoop list | sort Name
+scoop list | sort 
+scoop list | sort time
+scoop list | uniq
+sort -h
+scoop list | sort -v
+exit
+:e
+:q
+exit
