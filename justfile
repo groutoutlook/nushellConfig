@@ -2,7 +2,7 @@ shebang := if os() == 'windows' { 'pwsh.exe' } else { '/usr/bin/env pwsh' }
 set shell := ["pwsh", "-c"]
 set windows-shell := ["pwsh.exe", "-NoLogo", "-Command"]
 set dotenv-load := true
-# set dotenv-filename	:= ".env"
+set dotenv-filename	:= ".env"
 # set dotenv-required := true
 # INFO: if you want to edit the justfile use js -e.
 
