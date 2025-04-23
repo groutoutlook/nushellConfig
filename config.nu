@@ -815,15 +815,24 @@ $env.config = {
     ]
 }
 
+source zoxide.nu
+use starship.nu
+
+# INFO: All alias.
 alias r = just
 alias rr = just run
 alias rb = just build
 alias j = jrnl
+alias z = __zoxide_z
+alias zi = __zoxide_zi
 alias cd = z 
 alias cdi = zi 
+alias zo = zoxide query 
+alias zq = zoxide query 
+alias zoi = zoxide query -i
+alias zqi = zoxide query -i
+alias expl = explorer .
 
-source zoxide.nu
-use starship.nu
 export-env {
   $env.FZF_ALT_C_COMMAND = "fd --type directory --hidden"
   $env.FZF_ALT_C_OPTS = "--preview 'tree -C {} | head -n 200'"

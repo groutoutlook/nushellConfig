@@ -1,12 +1,6 @@
 def create_left_prompt [] {
     mut home = ""
-    try {
-        if $nu.os-info.name == "windows" {
-            $home = $env.USERPROFILE
-        } else {
-            $home = $env.HOME
-        }
-    }
+    try {if $nu.os-info.name == "windows" {$home = $env.USERPROFILE} else {$home = $env.HOME}}
     let dir = ([
         ($env.PWD | str substring 0..($home | str length) | str replace $home "~"),
         ($env.PWD | str substring ($home | str length)..)
@@ -41,7 +35,6 @@ $env.PROMPT_INDICATOR = {|| "> " }
 $env.PROMPT_INDICATOR_VI_INSERT = {|| ": " }
 $env.PROMPT_INDICATOR_VI_NORMAL = {|| "> " }
 $env.PROMPT_MULTILINE_INDICATOR = {|| "::: " }
-
 $env.ENV_CONVERSIONS = {
     "PATH": {
         from_string: { |s| $s | split row (char esep) | path expand --no-symlink }
@@ -52,26 +45,17 @@ $env.ENV_CONVERSIONS = {
         to_string: { |v| $v | path expand --no-symlink | str join (char esep) }
     }
 }
-
 $env.NU_LIB_DIRS = [
     # ($nu.default-config-dir | path join 'scripts') # add <nushell-config-dir>/scripts
 ]
-
 $env.NU_PLUGIN_DIRS = [
     # ($nu.default-config-dir | path join 'plugins') # add <nushell-config-dir>/plugins
 ]
-
-$env.DOCKER_BUILDKIT = 1
-$env.LIBVIRT_DEFAULT_URI = "qemu:///system"
-$env.DOTNET_CLI_TELEMETRY_OPTOUT = 1
-
 $env.VISUAL = "hx"
 $env.EDITOR = $env.VISUAL
-
 if (not ('XDG_CONFIG_HOME' in $env)) {
     $env.CLJ_CONFIG = $env.HOME + "/.clojure"
 }
-
 def setup-path [path: string, prepend = true] {
     if ((not ($path in $env.PATH)) and ($path | path exists) ) {
         return ($env.PATH | split row (char esep) | if $prepend { prepend ($path) } else { append ($path) } )
