@@ -826,6 +826,7 @@ use starship.nu
 alias r = just
 alias rr = just run
 alias rb = just build
+alias re = just -e
 alias j = jrnl
 alias z = __zoxide_z
 alias zi = __zoxide_zi
