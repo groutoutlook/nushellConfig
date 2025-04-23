@@ -840,9 +840,9 @@ alias zqi = zoxide query -i
 alias expl = explorer .
 
 export-env {
-  $env.FZF_ALT_C_COMMAND = "fd --type directory --hidden"
+  $env.FZF_ALT_C_COMMAND = "fd --type directory"
   $env.FZF_ALT_C_OPTS = "--preview 'tree -C {} | head -n 200'"
-  $env.FZF_CTRL_T_COMMAND = "fd --type file --hidden"
+  $env.FZF_CTRL_T_COMMAND = "fd --type file"
   $env.FZF_CTRL_T_OPTS = "--preview 'bat --color=always --style=full --line-range=:500 {}' "
   $env.FZF_DEFAULT_COMMAND = "fd --type file --hidden"
 }
