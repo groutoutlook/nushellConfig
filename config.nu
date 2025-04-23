@@ -831,6 +831,7 @@ alias z = __zoxide_z
 alias zi = __zoxide_zi
 alias cd = z
 alias cdi = zi
+alias cd- = cd -
 alias zo = zoxide query
 alias zq = zoxide query
 alias zoi = zoxide query -i
