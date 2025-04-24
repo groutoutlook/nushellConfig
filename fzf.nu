@@ -35,11 +35,8 @@ const ctrl_t =  {
 }
 
 export-env {
-  if not ($env.__keybindings_loaded? | default false) {
-    $env.__keybindings_loaded = true
-    $env.config.keybindings = $env.config.keybindings | append [
-      $alt_c
-      $ctrl_t
-    ]
-  }
+  $env.config.keybindings = $env.config.keybindings | append [
+    $alt_c
+    $ctrl_t
+  ]
 }
