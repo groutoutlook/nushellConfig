@@ -839,6 +839,16 @@ alias zoi = zoxide query -i
 alias zqi = zoxide query -i
 alias expl = explorer .
 
+def --env --wrapped rgj [...rest: string] {
+  # cd $'(zoxide query --interactive -- ...$rest | str trim -r -c "\n")'
+  rg -C3 ...$rest (zq obs)
+}
+
+def --env --wrapped gg [...rest: string] {
+  let temp = "https://www.duckduckgo.com/?q=" + ($rest | str join "+")
+  xdg-open $temp
+  
+}
 export-env {
   $env.FZF_ALT_C_COMMAND = "fd --type directory"
   $env.FZF_ALT_C_OPTS = "--preview 'tree -C {} | head -n 200'"
