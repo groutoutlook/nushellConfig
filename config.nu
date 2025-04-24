@@ -847,3 +847,4 @@ export-env {
   $env.FZF_DEFAULT_COMMAND = "fd --type file --hidden"
 }
 use fzf.nu
+use mise.nu
