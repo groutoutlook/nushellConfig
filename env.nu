@@ -74,4 +74,4 @@ $env.PATH = (setup-path ($env.HOME + "/bin"))
 $env.PATH = (setup-path ($env.HOME + "/.crc/bin/oc"))
 $env.PATH = (setup-path ($env.HOME + "/.krew/bin"))
 $env.PATH = (setup-path ($env.HOME + "/.cargo/bin"))
-$env.RIPGREP_CONFIG_PATH = $env.HOME + "/.config/ripgrep/config"
+$env.RIPGREP_CONFIG_PATH = $env.HOME + "/.config/.ripgreprc"

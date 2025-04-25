@@ -841,7 +841,7 @@ alias expl = explorer .
 
 def --env --wrapped rgj [...rest: string] {
   # cd $'(zoxide query --interactive -- ...$rest | str trim -r -c "\n")'
-  rg -C3 ...$rest (zq obs)
+  rg -C3 ...$rest (zq obs) -g "*Journal.md"
 }
 
 def --env --wrapped gg [...rest: string] {
