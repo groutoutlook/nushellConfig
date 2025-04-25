@@ -822,33 +822,6 @@ $env.config = {
 source zoxide.nu
 use starship.nu
 
-# INFO: All alias.
-alias r = just
-alias rr = just run
-alias rb = just build
-alias re = just -e
-alias j = jrnl
-alias z = __zoxide_z
-alias zi = __zoxide_zi
-alias cd = z
-alias cdi = zi
-alias cd- = cd -
-alias zo = zoxide query
-alias zq = zoxide query
-alias zoi = zoxide query -i
-alias zqi = zoxide query -i
-alias expl = explorer .
-
-def --env --wrapped rgj [...rest: string] {
-  # cd $'(zoxide query --interactive -- ...$rest | str trim -r -c "\n")'
-  rg -C3 ...$rest (zq obs) -g "*Journal.md"
-}
-
-def --env --wrapped gg [...rest: string] {
-  let temp = "https://www.duckduckgo.com/?q=" + ($rest | str join "+")
-  xdg-open $temp
-  
-}
 export-env {
   $env.FZF_ALT_C_COMMAND = "fd --type directory"
   $env.FZF_ALT_C_OPTS = "--preview 'tree -C {} | head -n 200'"
@@ -858,3 +831,4 @@ export-env {
 }
 use fzf.nu
 # use mise.nu
+source user.nu
