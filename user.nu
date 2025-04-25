@@ -1,10 +1,10 @@
 def --env --wrapped rgj [...rest: string] {
   # cd $'(zoxide query --interactive -- ...$rest | str trim -r -c "\n")'
-  rg -C3 ...$rest (zq obs) -g "*Journal.md"
+  rg -C3 ...$rest (zoxide query obs) -g "*Journal.md"
 }
 
 def --env --wrapped rgo [...rest: string] {
-  rg -C3 ...$rest (zq obs) -g !"*Journal.md"
+  rg -C3 ...$rest (zoxide query obs) -g !"*Journal.md"
 }
 
 def --env --wrapped gg [...rest: string] {
@@ -62,3 +62,4 @@ alias zqi = zoxide query -i
 alias expl = explorer .
 alias :v = nvim
 alias :Vs = :vs
+alias rgr = scooter
