@@ -840,5 +840,5 @@ export-env {
   $env.FZF_DEFAULT_COMMAND = "fd --type file --hidden --exclude .git"
 }
 use fzf.nu
-# use mise.nu
 source user.nu
+use nupm/nupm

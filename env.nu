@@ -51,12 +51,6 @@ $env.ENV_CONVERSIONS = {
     to_string: {|v| $v | path expand --no-symlink | str join (char esep) }
   }
 }
-$env.NU_LIB_DIRS = [
-  # ($nu.default-config-dir | path join 'scripts') # add <nushell-config-dir>/scripts
-]
-$env.NU_PLUGIN_DIRS = [
-  # ($nu.default-config-dir | path join 'plugins') # add <nushell-config-dir>/plugins
-]
 $env.VISUAL = "hx"
 $env.EDITOR = $env.VISUAL
 if (not ('XDG_CONFIG_HOME' in $env)) {
@@ -75,3 +69,12 @@ $env.PATH = (setup-path ($env.HOME + "/.crc/bin/oc"))
 $env.PATH = (setup-path ($env.HOME + "/.krew/bin"))
 $env.PATH = (setup-path ($env.HOME + "/.cargo/bin"))
 $env.RIPGREP_CONFIG_PATH = $env.HOME + "/.config/.ripgreprc"
+$env.NUPM_HOME = ($env.HOME  | path join "nupm")
+$env.PATH = (setup-path ($env.HOME | path join "scripts"))
+$env.NU_LIB_DIRS = [
+    ...
+    ($env.NUPM_HOME | path join "modules")
+]
+$env.NU_PLUGIN_DIRS = [
+  ($env.NUPM_HOME  | path join 'plugins') # add <nushell-config-dir>/plugins
+]

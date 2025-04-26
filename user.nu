@@ -17,6 +17,10 @@ def --env --wrapped vrj [...rest: string] {
   # cd $'(zoxide query --interactive -- ...$rest | str trim -r -c "\n")'
   ig ...$rest (zoxide query obs) -g "*Journal.md"
 }
+def --env "cd.." [levels: int = 1] {
+    let path = (1..$levels | each { ".." } | str join "/")
+    cd $path
+}
 
 def --env --wrapped toggle-edit-mode [...rest: string] {
   if $env.config.edit_mode != 'vi' {
@@ -58,10 +62,10 @@ def nvim_session [input_string?: string] {
     }
   }
 }
-const ctrl_alt_v = {
+const ctrl_alt_x = {
   name: vi_mode_emacs
   modifier:  Control_Alt
-  keycode: char_v
+  keycode: char_x
   mode: [emacs vi_normal vi_insert]
   event: [
     {
@@ -96,7 +100,7 @@ const ctrl_j = { name: append_edit_if_j
 }
 export-env {
   $env.config.keybindings = $env.config.keybindings | append [
-    $ctrl_alt_v
+    $ctrl_alt_x
     $ctrl_g
     $ctrl_j
   ]
