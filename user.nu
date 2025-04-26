@@ -9,7 +9,22 @@ def --env --wrapped rgo [...rest: string] {
 
 def --env --wrapped gg [...rest: string] {
   let temp = "https://www.duckduckgo.com/?q=" + ($rest | str join "+")
-  xdg-open $temp
+  # xdg-open $temp
+  start $temp
+}
+
+def --env --wrapped vrj [...rest: string] {
+  # cd $'(zoxide query --interactive -- ...$rest | str trim -r -c "\n")'
+  ig ...$rest (zoxide query obs) -g "*Journal.md"
+}
+
+def --env --wrapped toggle-edit-mode [...rest: string] {
+  if $env.config.edit_mode != 'vi' {
+    $env.config.edit_mode = 'vi'
+  } else {
+    $env.config.edit_mode = 'emacs'
+  }
+    echo $env.config.edit_mode
 }
 
 # INFO: Quick session management for NuShell + nvim. 
@@ -26,7 +41,7 @@ let session_map = {
 }
 
 # Define the :vs command
-def ":vs" [$input_string?: string] {
+def nvim_session [input_string?: string] {
   # Default to "pw" if no input is provided
   let processed_string = if ($input_string | is-empty) { "nushell" } else { $session_map | get -i $input_string }
 
@@ -43,7 +58,49 @@ def ":vs" [$input_string?: string] {
     }
   }
 }
+const ctrl_alt_v = {
+  name: vi_mode_emacs
+  modifier:  Control_Alt
+  keycode: char_v
+  mode: [emacs vi_normal vi_insert]
+  event: [
+    {
+      send: executehostcommand
+      cmd: "toggle-edit-mode"   
+    }
+  ]
+}
+const ctrl_g = { name: insert_gg_and_enter
+  modifier: control
+  keycode: char_s
+  mode: [emacs vi_normal vi_insert]
+  event: [{ edit: movetostart },{ edit: insertstring, value: "gg " }, { send: enter }]
+}
 
+def append_edit_if_j [] {
+    let input = (commandline) 
+    if ($input | str starts-with "j") {
+        commandline edit -a " -4 --edit"
+        commandline 
+    } else {
+        echo "not start with j"
+    }
+}
+const ctrl_j = { name: append_edit_if_j
+  modifier: control
+  keycode: char_j
+  mode: [emacs vi_normal vi_insert]
+  # checkout : [feat: immediately accept by mrdgo · Pull Request #15092 · nushell/nushell](https://github.com/nushell/nushell/pull/15092)
+  # event: [{send: ExecuteHostCommand, cmd: "append_edit_if_j" },{edit: MoveToEnd},{send: enter}]
+  event: [{edit: MoveToEnd},{ edit: insertstring, value: " -4 --edit" },{send: enter}]
+}
+export-env {
+  $env.config.keybindings = $env.config.keybindings | append [
+    $ctrl_alt_v
+    $ctrl_g
+    $ctrl_j
+  ]
+}
 # INFO: All alias.
 alias r = just
 alias rr = just run
@@ -60,6 +117,10 @@ alias zq = zoxide query
 alias zoi = zoxide query -i
 alias zqi = zoxide query -i
 alias expl = explorer .
-alias :v = nvim
-alias :Vs = :vs
 alias rgr = scooter
+alias ":v" = nvim
+alias ":vs" = nvim_session
+alias ":Vs" = nvim_session
+alias ":q" = exit
+alias ":Q" = exit
+

@@ -23,17 +23,16 @@ placeholder:
     if($env:pwsh_env) {Write-Host "$env:pwsh_env"}
     else {Write-Host "Apparently no .env as well" -ForegroundColor Yellow}
 
+alias b := build
+build: placeholder
+
 # INFO: basic `run` recipe.
 alias r := run
 default_args := 'args here'
 run args=default_args:
     @Write-Host {{default_args}} -ForegroundColor Red
-
-
-alias b := build
-build: placeholder
-
+    
+alias fmt := format
 format: 
     #!{{ shebang }}
-    gci *.nu |%{topiary format $_}
-    # could be something as `biome format --write`
+    gci *.nu |%{echo $_.Name;topiary format $_}

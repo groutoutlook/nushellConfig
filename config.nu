@@ -239,7 +239,7 @@ $env.config = {
   # use_grid_icons: true
   footer_mode: "auto" # always, never, number_of_rows, auto
   float_precision: 2 # the precision for displaying floats in tables
-  buffer_editor: "" # command that will be used to edit the current line buffer with ctrl+o, if unset fallback to $env.EDITOR and $env.VISUAL
+  buffer_editor: "hx" # command that will be used to edit the current line buffer with ctrl+o, if unset fallback to $env.EDITOR and $env.VISUAL
   use_ansi_coloring: true
   bracketed_paste: true # enable bracketed paste, currently useless on windows
   edit_mode: emacs # emacs, vi
@@ -816,6 +816,16 @@ $env.config = {
       mode: emacs
       event: {edit: capitalizechar}
     }
+    {
+      name: reload_config
+      modifier: none
+      keycode: f5
+      mode: [emacs vi_normal vi_insert]
+      event: {
+        send: executehostcommand
+        cmd: $"clear;exec nu;print 'Config reloaded.\n'"
+      }
+    }
   ]
 }
 
@@ -825,9 +835,9 @@ use starship.nu
 export-env {
   $env.FZF_ALT_C_COMMAND = "fd --type directory"
   $env.FZF_ALT_C_OPTS = "--preview 'tree -C {} | head -n 200'"
-  $env.FZF_CTRL_T_COMMAND = "fd --type file"
+  $env.FZF_CTRL_T_COMMAND = "fd --type file --hidden --exclude .git"
   $env.FZF_CTRL_T_OPTS = "--preview 'bat --color=always --style=full --line-range=:500 {}' "
-  $env.FZF_DEFAULT_COMMAND = "fd --type file --hidden"
+  $env.FZF_DEFAULT_COMMAND = "fd --type file --hidden --exclude .git"
 }
 use fzf.nu
 # use mise.nu
