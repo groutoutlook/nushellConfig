@@ -122,6 +122,7 @@ alias zoi = zoxide query -i
 alias zqi = zoxide query -i
 alias expl = explorer .
 alias rgr = scooter
+alias hx = helix
 alias ":v" = nvim
 alias ":vs" = nvim_session
 alias ":Vs" = nvim_session
