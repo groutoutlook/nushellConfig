@@ -123,6 +123,7 @@ alias zqi = zoxide query -i
 alias expl = explorer .
 alias rgr = scooter
 alias hx = helix
+alias f = fd --hyperlink
 alias ":v" = nvim
 alias ":vs" = nvim_session
 alias ":Vs" = nvim_session
