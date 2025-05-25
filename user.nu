@@ -129,4 +129,5 @@ alias ":vs" = nvim_session
 alias ":Vs" = nvim_session
 alias ":q" = exit
 alias ":Q" = exit
+alias b = bat
 
