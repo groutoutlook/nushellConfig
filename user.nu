@@ -31,6 +31,16 @@ def --env --wrapped toggle-edit-mode [...rest: string] {
     echo $env.config.edit_mode
 }
 
+def --env y [...args] {
+	let tmp = (mktemp -t "yazi-cwd.XXXXXX")
+	yazi ...$args --cwd-file $tmp
+	let cwd = (open $tmp)
+	if $cwd != "" and $cwd != $env.PWD {
+		cd $cwd
+	}
+	rm -fp $tmp
+}
+
 # INFO: Quick session management for NuShell + nvim. 
 # Define session map as a record
 let session_map = {
@@ -105,6 +115,8 @@ export-env {
     $ctrl_j
   ]
 }
+
+
 # INFO: All alias.
 alias r = just
 alias rr = just run
@@ -116,6 +128,8 @@ alias zi = __zoxide_zi
 alias cd = z
 alias cdi = zi
 alias cd- = cd -
+
+alias md = mkdir
 alias zo = zoxide query
 alias zq = zoxide query
 alias zoi = zoxide query -i
