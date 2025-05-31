@@ -119,9 +119,14 @@ export-env {
 
 # INFO: All alias.
 alias r = just
+alias re = just -e
 alias rr = just run
 alias rb = just build
-alias re = just -e
+alias rt = just test
+alias rs = just seek
+alias rw = just watch
+alias rfmt = just fmt
+alias rd = just deploy 
 alias j = jrnl
 alias z = __zoxide_z
 alias zi = __zoxide_zi
@@ -144,4 +149,4 @@ alias ":Vs" = nvim_session
 alias ":q" = exit
 alias ":Q" = exit
 alias b = bat
-
+alias bc = fend 
