@@ -51,6 +51,7 @@ $env.ENV_CONVERSIONS = {
     to_string: {|v| $v | path expand --no-symlink | str join (char esep) }
   }
 }
+$env.PAGER = "ov"
 $env.VISUAL = "hx"
 $env.EDITOR = $env.VISUAL
 if (not ('XDG_CONFIG_HOME' in $env)) {

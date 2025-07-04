@@ -841,4 +841,5 @@ export-env {
 }
 use fzf.nu
 source user.nu
+source os.nu
 # use $env.HOME/nupm
