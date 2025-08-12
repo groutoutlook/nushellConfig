@@ -1,5 +1,4 @@
 let dark_theme = {
-  # color for nushell primitives
   separator: white
   leading_trailing_space_bg: {attr: n} # no fg, no bg, attr none effectively turns this off
   header: green_bold
@@ -124,11 +123,6 @@ let light_theme = {
   shape_vardecl: purple
 }
 
-# External completer example
-let carapace_completer = {|spans|
-  carapace $spans.0 nushell ...$spans | from json
-}
-
 # The default config record. This is where much of your global configuration is setup.
 $env.config = {
   show_banner: false # true or false to enable or disable the welcome banner at startup
@@ -216,11 +210,6 @@ $env.config = {
     quick: true # set this to false to prevent auto-selecting completions when only one remains
     partial: true # set this to false to prevent partial filling of the prompt
     algorithm: "prefix" # prefix or fuzzy
-    external: {
-      enable: true # set to false to prevent nushell looking into $env.PATH to find more suggestions, `false` recommended for WSL users as this look up may be very slow
-      max_results: 100 # setting it lower can improve completion performance at the cost of omitting some options
-      completer: $carapace_completer # check 'carapace_completer' above as an example
-    }
   }
 
   filesize: {
@@ -251,7 +240,7 @@ $env.config = {
     # osc8 is also implemented as the deprecated setting ls.show_clickable_links, it shows clickable links in ls output if your terminal supports it. show_clickable_links is deprecated in favor of osc8
     osc8: true
     # osc9_9 is from ConEmu and is starting to get wider support. It's similar to osc7 in that it communicates the path to the terminal
-    osc9_9: false
+    osc9_9: true
     # osc133 is several escapes invented by Final Term which include the supported ones below.
     # 133;A - Mark prompt start
     # 133;B - Mark prompt end
@@ -272,33 +261,10 @@ $env.config = {
     reset_application_mode: true
   }
 
-  # shell_integration: false # enables terminal shell integration. Off by default, as some terminals have issues with this.
   render_right_prompt_on_last_line: false # true or false to enable or disable right prompt to be rendered on last line of the prompt.
 
   hooks: {
-    # https://www.nushell.sh/cookbook/direnv.html#configuring-direnv
-    pre_prompt: [
-      {||
-        let direnv = (direnv export json | from json | default {})
-        if ($direnv | is-empty) {
-          return
-        }
-        $direnv
-        | items {|key, value|
-          {
-            key: $key
-            value: (
-              if $key in $env.ENV_CONVERSIONS {
-                do ($env.ENV_CONVERSIONS | get $key | get from_string) $value
-              } else {
-                $value
-              }
-            )
-          }
-        } | transpose -ird | load-env
-      }
-    ]
-    # pre_prompt: [{ null }] # run before the prompt is shown
+    pre_prompt: [{ null }] # run before the prompt is shown
     pre_execution: [{ null }] # run before the repl input is run
     env_change: {
       PWD: [{|before, after| null }] # run if the PWD environment is different since the last repl input
@@ -361,18 +327,18 @@ $env.config = {
   ]
 
   keybindings: [
-    # {
-    #   name: completion_menu
-    #   modifier: none
-    #   keycode: tab
-    #   mode: [emacs vi_normal vi_insert]
-    #   event: {
-    #     until: [
-    #       {send: menu name: completion_menu}
-    #       {send: menunext}
-    #     ]
-    #   }
-    # }
+    {
+      name: completion_menu
+      modifier: none
+      keycode: tab
+      mode: [emacs vi_normal vi_insert]
+      event: {
+        until: [
+          {send: menu name: completion_menu}
+          {send: menunext}
+        ]
+      }
+    }
     {
       name: history_menu
       modifier: control

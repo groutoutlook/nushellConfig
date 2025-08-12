@@ -57,7 +57,7 @@ let session_map = {
 # Define the :vs command
 def nvim_session [input_string?: string] {
   # Default to "pw" if no input is provided
-  let processed_string = if ($input_string | is-empty) { "nushell" } else { $session_map | get -i $input_string }
+  let processed_string = if ($input_string | is-empty) { "nushell" } else { $session_map | get $input_string }
 
   if ($processed_string | is-empty) {
     print --stderr $"\e[33mWhat do you want?\e[0m"
