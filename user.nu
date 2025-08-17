@@ -1,10 +1,10 @@
 def --env --wrapped rgj [...rest: string] {
   # cd $'(zoxide query --interactive -- ...$rest | str trim -r -c "\n")'
-  rg -C3 ...$rest (zoxide query obs) -g "*Journal.md"
+  rg -B1 -A4 ($rest | str join ".*") (zoxide query obs) -g "*Journal.md"
 }
 
 def --env --wrapped rgo [...rest: string] {
-  rg -C3 ...$rest (zoxide query obs) -g !"*Journal.md"
+  rg -B1 -A4 ($rest | str join ".*") (zoxide query obs) -g !"*Journal.md"
 }
 
 def --env --wrapped gg [...rest: string] {
