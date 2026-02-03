@@ -806,6 +806,7 @@ export-env {
   $env.FZF_DEFAULT_COMMAND = "fd --type file --hidden --exclude .git"
 }
 use fzf.nu
+source tv.nu
 source user.nu
 source os.nu
 # use $env.HOME/nupm
