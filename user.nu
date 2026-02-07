@@ -116,11 +116,14 @@ export-env {
   ]
 }
 
+# $env.TRANSIENT_PROMPT_COMMAND_RIGHT = ""
+# $env.TRANSIENT_PROMPT_MULTILINE_INDICATOR = ""
 
 # INFO: All alias.
 alias r = just
 alias re = just -e
 alias rr = just run
+alias rrr = just rr
 alias rb = just build
 alias rt = just test
 alias rs = just seek
@@ -133,6 +136,10 @@ alias zi = __zoxide_zi
 alias cd = z
 alias cdi = zi
 alias cd- = cd -
+
+def --env cdsl [path: string = "."] {
+  cd ($path | path expand)
+}
 
 alias md = mkdir
 alias zo = zoxide query
@@ -150,3 +157,5 @@ alias ":q" = exit
 alias ":Q" = exit
 alias b = bat
 alias bc = fend 
+alias cal = carl
+alias serve = miniserve
