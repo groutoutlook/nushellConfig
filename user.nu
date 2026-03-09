@@ -84,11 +84,11 @@ const ctrl_alt_x = {
     }
   ]
 }
-const ctrl_g = { name: insert_gg_and_enter
+const ctrl_s = { name: insert_rgj_and_enter
   modifier: control
   keycode: char_s
   mode: [emacs vi_normal vi_insert]
-  event: [{ edit: movetostart },{ edit: insertstring, value: "gg " }, { send: enter }]
+  event: [{ edit: movetostart },{ edit: insertstring, value: "rgj " }, { send: enter }]
 }
 
 def append_edit_if_j [] {
@@ -111,7 +111,7 @@ const ctrl_j = { name: append_edit_if_j
 export-env {
   $env.config.keybindings = $env.config.keybindings | append [
     $ctrl_alt_x
-    $ctrl_g
+    $ctrl_s
     $ctrl_j
   ]
 }
