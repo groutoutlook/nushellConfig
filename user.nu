@@ -100,6 +100,13 @@ def append_edit_if_j [] {
         echo "not start with j"
     }
 }
+def replace_rg_to_ig [] {
+    let input = (commandline)
+    if ($input | str starts-with "rg") {
+        let rest = ($input | str substring 2..)
+        commandline edit -r $"ig($rest)"
+    }
+}
 const ctrl_j = { name: append_edit_if_j
   modifier: control
   keycode: char_j
@@ -108,11 +115,18 @@ const ctrl_j = { name: append_edit_if_j
   # event: [{send: ExecuteHostCommand, cmd: "append_edit_if_j" },{edit: MoveToEnd},{send: enter}]
   event: [{edit: MoveToEnd},{ edit: insertstring, value: " -4 --edit" },{send: enter}]
 }
+const alt_v = { name: replace_rg_to_ig
+  modifier: alt
+  keycode: char_v
+  mode: [emacs vi_normal vi_insert]
+  event: [{send: ExecuteHostCommand, cmd: "replace_rg_to_ig"}]
+}
 export-env {
   $env.config.keybindings = $env.config.keybindings | append [
     $ctrl_alt_x
     $ctrl_s
     $ctrl_j
+    $alt_v
   ]
 }
 
