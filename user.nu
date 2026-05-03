@@ -1,11 +1,11 @@
 def --env --wrapped rgj [...rest: string] {
   # cd $'(zoxide query --interactive -- ...$rest | str trim -r -c "\n")'
-  rg -B1 -A4 ($rest | str join ".*") (zoxide query obs) -g "*Journal.md"
+  rg -B1 -A4 -M500 ($rest | str join ".*") (zoxide query obs) -g "*Journal.md"
 }
 
-def --env --wrapped rgo [...rest: string] {
-  rg -B1 -A4 ($rest | str join ".*") (zoxide query obs) -g !"*Journal.md"
-}
+# def --env --wrapped rgo [...rest: string] {
+#   rg -B1 -A4 -M500 ($rest | str join ".*") (zoxide query obs) -g !"*Journal.md"
+# }
 
 def --env --wrapped gg [...rest: string] {
   let temp = "https://www.duckduckgo.com/?q=" + ($rest | str join "+")
@@ -13,9 +13,9 @@ def --env --wrapped gg [...rest: string] {
   start $temp
 } 
 
-def --env --wrapped vrj [...rest: string] {
+def --env --wrapped igj [...rest: string] {
   # cd $'(zoxide query --interactive -- ...$rest | str trim -r -c "\n")'
-  ig ...$rest (zoxide query obs) -g "*Journal.md"
+  ig ($rest | str join ".*") (zoxide query obs) -g "*Journal.md"
 }
 def --env "cd.." [levels: int = 1] {
     let path = (1..$levels | each { ".." } | str join "/")
@@ -228,7 +228,7 @@ def jmpv [
             # Substituted with $playlist_file due to missing context.
             rg $final_pattern $playlist_file -C3 | lines | each {|line| filter-uri $line $strip_unplay } | compact | save --append $playlist_temp
         } else {
-            let content = (open $playlist_file | lines)
+            let content = (open --raw $playlist_file | decode utf-8 | lines)
             
             # Head processing
             let head_count = $head.0
