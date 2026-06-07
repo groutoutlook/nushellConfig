@@ -36,3 +36,8 @@ alias fmt := format
 format: 
     #!{{ shebang }}
     gci *.nu |%{echo $_.Name;topiary format $_}
+
+alias ei:= edit-in-ide
+[group('dev')]
+edit-in-ide:
+    code .

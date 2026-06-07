@@ -148,6 +148,17 @@ alias j = jrnl
 alias z = __zoxide_z
 alias zi = __zoxide_zi
 alias cd = z
+
+def --env zaa [
+    path: string = "."  # Directory to scan
+] {
+    ls $path | each { |it|
+        let target = $it.name
+        if (zoxide add $target | complete | get exit_code) == 0 {
+            print $"Add Path ($target) to zoxide database."
+        }
+    }
+}
 alias cdi = zi
 alias cd- = cd -
 
