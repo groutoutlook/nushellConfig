@@ -20,7 +20,7 @@ export-env {
 }
 
 # Jump to a directory using only keywords.
-def --env --wrapped __zoxide_z [...rest: string] {
+def --env --wrapped __zoxide_z [...rest: directory] {
   let path = match $rest {
     [] => { '~' }
     ['-'] => { '-' }
