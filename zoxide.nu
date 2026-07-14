@@ -21,15 +21,14 @@ export-env {
 
 # Jump to a directory using only keywords.
 def --env --wrapped __zoxide_z [...rest: directory] {
-  let path = match $rest {
-    [] => { '~' }
-    ['-'] => { '-' }
-    [$arg] if ($arg | path type) == 'dir' => { $arg }
+  match $rest {
+    [] => { cd ~ },
+    [ '-' ] => { cd - },
+    [ $arg ] if (try { cd $arg; true } catch { false }) => {},
     _ => {
-      zoxide query --exclude $env.PWD -- ...$rest | str trim -r -c "\n"
+      cd (^zoxide query --exclude $env.PWD -- ...$rest | str trim -r -c "\n")
     }
   }
-  cd $path
 }
 
 def --env --wrapped __zoxide_zi [...rest: string] {
