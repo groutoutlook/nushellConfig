@@ -28,7 +28,9 @@
          "source": "PLAN.md",
          "output": "WORKFLOW_PLAN.md",
          "title": "Focused PowerShell workflow parity",
-         "description": "Existing plan for incremental daily Nushell workflows; mobile behavior remains unverified.",
+         "description": "Existing plan for incremental daily Nushell workflows;
+
+         mobile behavior remains unverified.",
          "slug": "workflow-parity",
          "weight": 200,
          "category": "Plans and investigations"
@@ -46,5 +48,6 @@
    ],
    "related": [],
    "search_example": "workflow parity",
+
    "search": { "roots": [], "root_files": false, "extensions": [".nu"], "scopes": [] }
 }
