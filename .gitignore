@@ -1,3 +1,6 @@
 hw
 history.txt
 plugin.msgpackz
+
+# Generated documentation staging and search output.
+/out/

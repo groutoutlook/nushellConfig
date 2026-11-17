@@ -134,7 +134,7 @@ export-env {
 # $env.TRANSIENT_PROMPT_MULTILINE_INDICATOR = ""
 
 # INFO: All alias.
-alias r = just
+use commands/r.nu
 alias re = just -e
 alias rr = just run
 alias rrr = just rr

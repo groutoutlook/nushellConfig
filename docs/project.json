@@ -1,0 +1,50 @@
+{
+   "id": "nushell-config",
+   "name": "Nushell config",
+   "brand": "Nushell config",
+   "mark": "Nu",
+   "description": "Personal Nushell configuration, Just entry points and an incremental daily-workflow parity plan.",
+   "interface": "127.0.0.1",
+   "accent": "#84d884",
+   "engine": { "checkout": "../../../hw/docs-engine", "environment": "DOC_STYLING_ZOLA_ROOT" },
+   "pages": {
+      "home": "",
+      "start": "maintenance/",
+      "maintenance": "maintenance/",
+      "plan": "workflow-parity/",
+      "parity": "workflow-parity/",
+      "commands": "commands/",
+      "documentation": "documentation/",
+      "map": "map/",
+      "directory": "directory/"
+   },
+   "groups": ["Start here", "Reference"],
+   "group_descriptions": {
+      "Start here": "Configuration ownership, Highway discovery and documentation maintenance.",
+      "Reference": "Shared publication commands and the current Just recipe reference."
+   },
+   "references": [
+      {
+         "source": "PLAN.md",
+         "output": "WORKFLOW_PLAN.md",
+         "title": "Focused PowerShell workflow parity",
+         "description": "Existing plan for incremental daily Nushell workflows; mobile behavior remains unverified.",
+         "slug": "workflow-parity",
+         "weight": 200,
+         "category": "Plans and investigations"
+      },
+      {
+         "root": "engine",
+         "source": "docs/shared/DOCUMENTATION.md",
+         "output": "DOCUMENTATION.md",
+         "title": "Documentation workflow",
+         "description": "Shared authoring, project-scoped search and publication commands.",
+         "slug": "documentation",
+         "weight": 900,
+         "category": "Reference"
+      }
+   ],
+   "related": [],
+   "search_example": "workflow parity",
+   "search": { "roots": [], "root_files": false, "extensions": [".nu"], "scopes": [] }
+}

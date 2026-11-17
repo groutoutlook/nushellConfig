@@ -1,0 +1,49 @@
+{
+   "$schema": "https://biomejs.dev/schemas/2.6.8/schema.json",
+   "vcs": { "enabled": true, "clientKind": "git" },
+   "files": {
+      "includes": ["**", "!!out", "!!pwsh-star-coor-related", "!!VC0-Star", "!!vulkan-primal-asset"]
+   },
+   "formatter": {
+      "enabled": true,
+      "formatWithErrors": true,
+      "indentStyle": "space",
+      "indentWidth": 3,
+      "lineWidth": 80
+   },
+   "overrides": [
+      {
+         "includes": ["*.json", "*.jsonc", "keyframes/**/*.json"],
+         "formatter": { "indentStyle": "space", "indentWidth": 3 }
+      }
+   ],
+   "json": {
+      "formatter": { "lineWidth": 100, "expand": "never" },
+      "parser": { "allowComments": true, "allowTrailingCommas": true }
+   },
+   "javascript": {
+      "formatter": {
+         "quoteStyle": "double",
+         "jsxQuoteStyle": "double",
+         "semicolons": "always",
+         "trailingCommas": "none",
+         "bracketSpacing": true,
+         "arrowParentheses": "always",
+         "indentStyle": "space",
+         "indentWidth": 3,
+         "lineWidth": 80
+      },
+      "globals": ["console", "setTimeout", "setInterval"]
+   },
+   "linter": {
+      "enabled": true,
+      "rules": {
+         "complexity": {},
+         "correctness": {},
+         "nursery": {},
+         "performance": {},
+         "security": {},
+         "style": { "useBlockStatements": "warn" }
+      }
+   }
+}
