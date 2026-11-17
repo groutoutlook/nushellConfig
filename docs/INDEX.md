@@ -7,8 +7,7 @@ template = "index.html"
 
 This checkout owns the Nushell startup files, command helpers and completion
 modules. Keep the existing shell setup and improve selected daily workflows
-incrementally. The [workflow parity plan](@/WORKFLOW_PLAN.md) records the intended
-roughly 70% familiarity target; it is not a completed mobile compatibility audit.
+incrementally.
 
 [Highway](/sites/highway/) already links this checkout as `nushell`.
 Doc-Styling-Zola supplies the common documentation recipes and theme;
@@ -19,7 +18,6 @@ search and tasks. The site is `/sites/nushell-config/` on the shared gateway.
 | ----------------------------- | ------------------ |
 | List this checkout's recipes  | `just --list`      |
 | Open these guides             | `just doc`         |
-| Read the focused plan         | `just doc plan`    |
 | Check documentation offline   | `just docs::check` |
 | Publish changed documentation | `just docs::build` |
 | Find the registered checkout  | `just z nushell`   |

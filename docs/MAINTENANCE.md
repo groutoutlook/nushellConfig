@@ -53,11 +53,6 @@ prints a sample value. Use the docs recipes for documentation work.
 
 ## Content and private state
 
-Edit these guides and the manifest locally. The existing root `PLAN.md` is
-imported as the [workflow parity plan](@/WORKFLOW_PLAN.md), retaining one source
-for that backlog. Shared authoring guidance is imported from the engine and
-recipe help is generated from Just metadata.
-
 The manifest declares no source-search files. Publication includes the
 authored guides, imported plan and shared guide, and generated recipe help.
 It does not select `.env`, shell history, local credentials or shell runtime
